@@ -1,0 +1,190 @@
+/* Styles pour ConversationHistory Component */
+
+.conversation-history {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-history.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    background: var(--white);
+    border-bottom: 2px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.history-header h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.history-count {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    background: var(--secondary-gray);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+}
+
+.history-item {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    border-left: 3px solid transparent;
+}
+
+.history-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+    border-left-color: var(--primary-blue);
+}
+
+.history-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.item-number {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-blue);
+    background: rgba(30, 144, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.item-time {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+}
+
+.history-question {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--secondary-gray);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.history-question:hover {
+    background: rgba(30, 144, 255, 0.08);
+    transform: scale(1.01);
+}
+
+.history-question svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--primary-blue);
+}
+
+.history-question strong {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.history-answer {
+    padding-left: var(--spacing-lg);
+}
+
+.answer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 2px 8px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.history-answer p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Empty State */
+.empty-history {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    color: var(--text-tertiary);
+}
+
+.empty-history svg {
+    margin-bottom: var(--spacing-lg);
+    color: var(--border-medium);
+}
+
+.empty-history p {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.empty-history span {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+}
+
+/* Scrollbar pour la liste */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-full);
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-header {
+        padding: var(--spacing-md);
+    }
+
+    .history-item {
+        padding: var(--spacing-md);
+    }
+
+    .history-answer {
+        padding-left: 0;
+    }
+}
