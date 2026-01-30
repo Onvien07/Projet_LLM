@@ -48,12 +48,20 @@ app.post('/ask', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`🚀 NewsPulse Server démarré sur http://localhost:${PORT}`);
-    console.log(`📁 Frontend servi depuis: ${path.join(__dirname, '../public')}`);
+const startServer = () => {
+    app.listen(PORT, () => {
+        console.log(`🚀 NewsPulse Server démarré sur http://localhost:${PORT}`);
+        console.log(`📁 Frontend servi depuis: ${path.join(__dirname, '../public')}`);
 
-    const status = llmService.isGeminiAvailable() ? 'GEMINI ACTIVE' :
-        llmService.isDeepseekAvailable() ? 'DEESEEK ACTIVE' :
-            'INACTIVE (Mock)';
-    console.log(`🤖 Statut IA: ${status}\n`);
-});
+        const status = llmService.isGeminiAvailable() ? 'GEMINI ACTIVE' :
+            llmService.isDeepseekAvailable() ? 'DEESEEK ACTIVE' :
+                'INACTIVE (Mock)';
+        console.log(`🤖 Statut IA: ${status}\n`);
+    });
+};
+
+if (process.env.NODE_ENV !== 'production') {
+    startServer();
+}
+
+export default app;
