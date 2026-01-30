@@ -29,7 +29,7 @@ export function isDeepseekAvailable() {
 
 export function isGeminiAvailable() {
     const apiKey = getGeminiApiKey();
-    return !!apiKey && apiKey.length > 20;
+    return !!apiKey && apiKey.length > 10; // Réduit la contrainte pour plus de souplesse
 }
 
 export function isAnyAiAvailable() {

@@ -1,16 +1,32 @@
+// --- CONFIGURATION ENVIRONNEMENT ---
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// On cherche le .env dans plusieurs endroits possibles
+const possiblePaths = [
+    path.join(process.cwd(), '.env'),
+    path.join(__dirname, '..', '.env'),
+    path.join(__dirname, '..', '..', '.env')
+];
+
+for (const envPath of possiblePaths) {
+    const result = dotenv.config({ path: envPath });
+    if (!result.error) {
+        console.log(`✅ .env chargé depuis: ${envPath}`);
+        break;
+    }
+}
+
+// Sur Vercel, les variables sont déjà dans process.env, donc pas besoin de .env
+console.log('--- STATUT IA ---');
+console.log('GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? 'Détectée' : 'MANQUANTE');
+console.log('DEESEEK_API_KEY:', process.env.DEESEEK_API_KEY ? 'Détectée' : 'MANQUANTE');
+console.log('-----------------');
+
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import * as llmService from './services/llmService.js';
-
-// Charger le .env du projet racine si présent, sinon tomber back sur le .env local
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const rootEnv = path.join(__dirname, '..', '..', '.env');
-dotenv.config({ path: rootEnv });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
